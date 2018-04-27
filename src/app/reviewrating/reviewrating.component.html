@@ -1,0 +1,31 @@
+
+<form (ngSubmit)="confirm()">
+
+   <!-- <mat-toolbar>รีวิวคอร์สเสริมความงาม</mat-toolbar> -->
+   รีวิวคอร์สเสริมความงาม <br>
+
+   <form class="ui reply form">
+    <div class="field">
+      <textarea name="C_Review" placeholder="รีวิวคอร์สเสริมความงาม" [(ngModel)]="courseReview.C_Review"></textarea>
+    </div>
+
+    <div>
+      ให้คะแนนสถาบันเสริมความงาม <br>
+      <p-rating name="C_Rating" [(ngModel)]="courseReview.C_Rating" [cancel]="false"></p-rating>
+    </div>
+
+    
+  </form>
+<!-- 
+  <div class="ui blue labeled submit icon button" type="submit">
+      <i class="icon edit"></i> ยืนยัน
+    </div> -->
+
+
+
+<p-growl [value]="msgs"></p-growl>
+<p-confirmDialog appendTo="body"></p-confirmDialog>
+  <button class="ui blue button" type="submit" ><i class="icon edit"></i>ยืนยัน</button>
+
+</form>
+

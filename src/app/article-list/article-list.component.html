@@ -1,0 +1,31 @@
+<app-navbar>
+
+</app-navbar>
+<div class="ui container">
+
+    <div class="ui segment">
+        <table  class="table table-hover">
+            <thead>
+                <tr>
+                    <th style="width:13%" class="ui center aligned">ชื่อ</th>
+                    <th style="width:13%" class="ui center aligned">ดู</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let article of articleList|async ; let i = index">
+                    <td>{{article.atcTitle}}</td>
+                    <td><button type="button" class="ui icon button" (click)="viewArticle(i)">
+                            <i class="eye icon"></i>
+                          </button></td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+
+
+</div>

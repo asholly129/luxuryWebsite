@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+
+<div class="ui container">
+    <div class="ui middle aligned center aligned grid">
+        <div class="column">
+          <h2 class="ui image header">
+            <div class="content">
+              เข้าสู่ระบบ
+            </div>
+          </h2>
+          <form action="https://s.codepen.io/voltron2112/debug/PqrEPM?" method="get" class="ui large form">
+            <div class="ui stacked secondary  segment">
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="user icon"></i>
+                  <input type="text" name="email" placeholder="อีเมล์" [(ngModel)] = "inputEmail">
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="lock icon"></i>
+                  <input type="password" name="password" placeholder="รหัสผ่าน" [(ngModel)] = "inputPassword">
+                </div>
+              </div>
+              <div class="ui fluid large teal submit button" (click)="login()">Login</div>
+            </div>
+      
+            <div class="ui error message"></div>
+      
+          </form>
+      
+          <div class="ui message">
+               <a class="item" [routerLink]="'/signup'" routerLinkActive="active">
+                สมัครสมาชิก
+              </a>
+          </div>
+        </div>
+      </div>
+      
+
+</div>

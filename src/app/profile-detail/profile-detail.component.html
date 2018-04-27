@@ -1,0 +1,65 @@
+<app-navbar></app-navbar>
+
+<div class="ui container">
+<div class="ui grid">
+  <div class="four wide column">
+      <app-nav-member></app-nav-member>
+  </div>
+
+  <div class="twelve wide stretched column">
+    <div class="ui segment">
+        <h1>ข้อมูลส่วนตัวของฉัน</h1>
+<form (ngSubmit)="updateProfile(userForm)" #userForm="ngForm"  >
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+    <mat-form-field >
+      <input matInput type="text" placeholder="ชื่อ" name="name"  [(ngModel)]="user.name" required>
+      <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="form-group col-md-6">
+    <mat-form-field >
+    <input matInput type="text" placeholder="นามสกุล" name="lastName"  [(ngModel)]="user.lastName" required>
+    <mat-error *ngIf="lastName.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+    <mat-form-field>
+        <input type="tel" matInput placeholder="เบอร์โทรศัพท์" name="tel" [(ngModel)]="user.tel"
+        maxlength="10" data-format=" (ddd) ddd-dddd" required>
+        <mat-error *ngIf="address.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group col-md-6">
+            <mat-form-field>
+            <input matInput type="text" placeholder="ที่อยู่" name="address"   [(ngModel)]="user.address" required>
+            <mat-error *ngIf="address.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+    <!-- <mat-form-field >
+    <input matInput type="text" placeholder="เบอร์โทรศัพท์" name="tel"   [(ngModel)]="user.tel" required>
+    <mat-error *ngIf="tel.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field> -->
+</div>
+
+<button class="btn btn-primary" mat-button type="submit">อัพเดตโปรไฟล์ของฉัน</button>
+
+</form>
+
+    </div>
+    
+    
+  </div>
+</div>
+
+<div>
+
+</div>
+</div>

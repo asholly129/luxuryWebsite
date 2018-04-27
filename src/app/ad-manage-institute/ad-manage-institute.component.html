@@ -1,0 +1,62 @@
+
+
+<div class="ui container">
+  <div class="ui grid">
+        <div class="three wide column">
+            <app-nav-admin></app-nav-admin>
+        </div> 
+    
+
+    <div class="thirteen wide stretched column">
+        
+        <h1>จัดการข้อมูลสถาบันเสริมความงาม</h1>
+        <div class="two wide column">  <button class="ui green icon button right floated"
+          [routerLink]="'/add-institute'" suiPopup popupHeader="เพิ่มข้อมูลสถาบันเสริมความงาม" popupText="คลิกเพื่อเพิ่มข้อมูลสถาบันเสริมความงาม" weight="20%">
+        <i class="add icon"></i></button></div>
+        
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                <th style="width:13%" class="ui center aligned">ชื่อ</th>
+                <th style="width:13%" class="ui center aligned">รูปภาพ</th>
+                <th style="width:13%" class="ui center aligned">ประเทศ</th>
+                <th style="width:13%" class="ui center aligned">จังหวัด</th>
+                <!-- <td>Key</td> -->
+                <th style="width:13%" class="ui center aligned">แก้ไข/ลบ</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                <tr *ngFor="let data of instituteList| async ;let i = index" [attr.data-index]="i">
+                <td>{{data.I_Name}}</td>
+                <td><img src="{{data.url}}" alt="{{data.name}}" width="200px"></td>
+                <!-- <td>
+                  <script type="text/javascript">
+                  var variables= require('data.C_Category');
+                  // `/editCourse/${this.myKeyTemp[data].key}`
+                  if(variables == '1') {
+                    document.write("Surgery Program");
+                  }
+                  </script>
+                
+                </td> -->
+                <td *ngIf="data.I_Country == 1">ไทย</td>
+                <td *ngIf="data.I_Country == 2">เกาหลี</td>
+                <td>{{data.I_Province}}</td>
+        <!-- <td>{{i.key}}</td> -->
+        <td class="ui center aligned single line">
+ 
+          <button type="button" class="ui green icon button" (click)="editInstitute(i)"><i class="edit outline icon"></i></button>
+          <button type="button" class="ui red icon button" (click)="delInstitute(i)"><i class="trash alternate outline icon"></i></button>
+  
+        </td>
+        </tr>
+        </tbody>
+        </table>
+        
+        
+        </div>
+    
+  </div>
+      
+</div>

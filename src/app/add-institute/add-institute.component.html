@@ -1,0 +1,150 @@
+
+
+<div class="ui container">
+  <div class="ui grid">
+        <div class="three wide column">
+            <app-nav-admin></app-nav-admin>
+        </div> 
+    
+
+    <div class="thirteen wide stretched column">
+        
+      <button class="ui green icon button"
+      [routerLink]="'/add-institute'" suiPopup popupHeader="เพิ่มข้อมูลสถาบันเสริมความงาม" popupText="คลิกเพื่อเพิ่มข้อมูลสถาบันเสริมความงาม"
+       style="width:20%">
+    <i class="add icon"></i></button>
+
+    <h1>{{title}}</h1>
+    <form (ngSubmit)="addInstitute(instituteForm)" #instituteForm="ngForm">
+      <div class="row">
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="ชื่อสถาบันเสริมความงาม" name="I_Name" [(ngModel)]="institute.I_Name">
+              </mat-form-field>
+        </div>
+
+        <div class="col">
+            <mat-form-field>
+                <mat-select placeholder="ประเทศเสริมความงาม" name="I_Country" [(ngModel)]="institute.I_Country">
+                  <mat-option  [value]="1">ไทย</mat-option>
+                  <mat-option  [value]="2">เกาหลี</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="จังหวัดสถาบันเสริมความงาม" name="I_Province" [(ngModel)]="institute.I_Province">
+              </mat-form-field>
+        </div>
+
+        <div class="col">
+            <mat-form-field>
+                <textarea matInput placeholder="รายละเอียดสถาบันเสริมความงาม" name="I_Description" [(ngModel)]="institute.I_Description"></textarea>
+              </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+            <p-gmap id="gmap" [options]="options" [overlays]="overlays"
+            (onMapReady)="setMap($event)"></p-gmap>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="ละติจูด" name="I_Latitude" [(ngModel)]="institute.I_Latitude">
+              </mat-form-field>
+        </div>
+
+        <div class="col">
+            <mat-form-field>
+                <input matInput placeholder="ลองติจูด" name="I_Longtitude" [(ngModel)]="institute.I_Longtitude">
+              </mat-form-field>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col">
+          <div>
+            <mat-form-field>
+                <mat-select placeholder="เวลาทำการ" name="I_Open" [(ngModel)]="institute.I_Open">
+                  <mat-option  [value]="1">00.00</mat-option><mat-option  [value]="2">01.00</mat-option>
+                  <mat-option  [value]="3">02.00</mat-option><mat-option  [value]="4">03.00</mat-option>
+                  <mat-option  [value]="5">04.00</mat-option><mat-option  [value]="6">05.00</mat-option>
+                  <mat-option  [value]="7">06.00</mat-option><mat-option  [value]="8">07.00</mat-option>
+                  <mat-option  [value]="9">08.00</mat-option><mat-option  [value]="10">09.00</mat-option>
+                  <mat-option  [value]="11">10.00</mat-option><mat-option  [value]="12">11.00</mat-option>
+                  <mat-option  [value]="13">12.00</mat-option><mat-option  [value]="14">13.00</mat-option>
+                  <mat-option  [value]="15">14.00</mat-option> <mat-option  [value]="16">15.00</mat-option>
+                  <mat-option  [value]="17">16.00</mat-option><mat-option  [value]="18">17.00</mat-option>
+                  <mat-option  [value]="19">18.00</mat-option><mat-option  [value]="20">19.00</mat-option>
+                  <mat-option  [value]="21">20.00</mat-option><mat-option  [value]="22">21.00</mat-option>
+                  <mat-option  [value]="23">22.00</mat-option><mat-option  [value]="24">23.00</mat-option>
+                </mat-select>
+              </mat-form-field>
+              -
+              <mat-form-field>
+                  <mat-select placeholder="เวลาทำการ" name="I_Close" [(ngModel)]="institute.I_Close">
+                    <mat-option  [value]="1">00.00</mat-option><mat-option  [value]="2">01.00</mat-option>
+                    <mat-option  [value]="3">02.00</mat-option><mat-option  [value]="4">03.00</mat-option>
+                    <mat-option  [value]="5">04.00</mat-option><mat-option  [value]="6">05.00</mat-option>
+                    <mat-option  [value]="7">06.00</mat-option><mat-option  [value]="8">07.00</mat-option>
+                    <mat-option  [value]="9">08.00</mat-option><mat-option  [value]="10">09.00</mat-option>
+                    <mat-option  [value]="11">10.00</mat-option><mat-option  [value]="12">11.00</mat-option>
+                    <mat-option  [value]="13">12.00</mat-option><mat-option  [value]="14">13.00</mat-option>
+                    <mat-option  [value]="15">14.00</mat-option> <mat-option  [value]="16">15.00</mat-option>
+                    <mat-option  [value]="17">16.00</mat-option><mat-option  [value]="18">17.00</mat-option>
+                    <mat-option  [value]="19">18.00</mat-option><mat-option  [value]="20">19.00</mat-option>
+                    <mat-option  [value]="21">20.00</mat-option><mat-option  [value]="22">21.00</mat-option>
+                    <mat-option  [value]="23">22.00</mat-option><mat-option  [value]="24">23.00</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+        </div>
+
+      </div>
+      
+      <form (ngSubmit)="upload()">
+            <div *ngIf="currentFileUpload" class="progress" style="width:400px" >
+              <div class="progress-bar progress-bar-info progress-bar-striped"
+                role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                aria-valuemin="0" aria-valuemax="100"
+                [ngStyle]="{width:progress.percentage+'%'}" >
+                {{progress.percentage}}%</div>
+            </div>
+
+            <!-- <img src="{{currentFileUpload.url}}" width="200px"> -->
+             
+            <label class="btn btn-default" > <input type="file" [(ngModel)]="institute.name" 
+              [ngModelOptions]="{standalone: true}"
+               (change)="selectFile($event)">
+               <!-- {{course.name}} -->
+            </label>
+
+            <button class="ui green button" type="submit" [disabled]="!selectedFiles">upload</button>
+
+          </form>
+    
+
+
+
+    <button class="ui green button" type="submit">Submit</button>
+    </form>
+    <a routerLink="/ad-manage-institute">กลับ</a>
+
+
+        
+        
+        </div>
+    
+  </div>
+      
+</div>
+

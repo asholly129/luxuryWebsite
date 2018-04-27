@@ -1,0 +1,42 @@
+<div class="ui container">
+    <div class="ui grid">
+          <div class="three wide column">
+              <app-nav-admin></app-nav-admin>
+          </div> 
+      
+  
+      <div class="thirteen wide stretched column">
+
+        <h1>ยืนยันการจอง</h1>
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th style="width:13%" class="ui center aligned">คอร์ส</th>
+              <th style="width:13%" class="ui center aligned">ชื่อ</th>
+              <th style="width:13%" class="ui center aligned">นามสกุล</th>
+              <th style="width:13%" class="ui center aligned">สถานะ</th>
+              <th style="width:13%" class="ui center aligned">ยืนยัน</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let cc of c;let i = index">
+              <td>{{c[i].C_Name}}</td>
+              <td>{{u[i].name}}</td>
+              <td>{{u[i].lastName}}</td>
+              <td *ngIf="r[i]=='1'">confirm</td>
+              <td *ngIf="r[i]!='1'"></td>
+              <td><button type="button" class="ui green icon button" (click)="confirmReserve(i)"><i class="check  icon"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+          
+        <!-- <p *ngFor="let cc of c;let i = index">{{c[i+1].C_Name}}</p> -->
+          
+          </div>
+      
+    </div>
+        
+  </div>
+  

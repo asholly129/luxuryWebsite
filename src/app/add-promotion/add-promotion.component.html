@@ -1,0 +1,54 @@
+
+
+<div class="ui container">
+  <div class="ui grid">
+        <div class="three wide column">
+            <app-nav-admin></app-nav-admin>
+        </div> 
+    
+
+    <div class="thirteen wide stretched column">
+        
+            <button class="ui green icon button"
+            [routerLink]="'/add-promotion'" suiPopup popupHeader="เพิ่มข้อมูลโปรโมชัน" popupText="คลิกเพื่อเพิ่มข้อมูลโปรโมชัน" weight="20%">
+          <i class="add icon"></i></button>
+      
+          <!-- <h1>{{title}}</h1> -->
+          <h1>{{title}}</h1>
+
+          <form (ngSubmit)="addArticle(articleForm)" #articleForm="ngForm">
+
+            <input type="text" pInputText placeholder="หัวข้อบทความ" name="atcTitle" [(ngModel)]="atcTitle"/>
+
+            <p-editor [(ngModel)]="actText" name="article" [style]="{'height':'320px'}"></p-editor>
+
+            <!-- <form (ngSubmit)="upload()">
+                <div *ngIf="currentFileUpload" class="progress" style="width:400px" >
+                  <div class="progress-bar progress-bar-info progress-bar-striped"
+                    role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                    aria-valuemin="0" aria-valuemax="100"
+                    [ngStyle]="{width:progress.percentage+'%'}" >
+                    {{progress.percentage}}%</div>
+                </div>
+    
+                 
+                <label class="btn btn-default" > <input type="file" [(ngModel)]="article.name" 
+                  [ngModelOptions]="{standalone: true}"
+                   (change)="selectFile($event)">
+                </label>
+    
+                <button class="ui green button" type="submit" [disabled]="!selectedFiles">upload</button>
+    
+              </form> -->
+  
+            <button class="ui green button" type="submit">เพิ่มบทความ</button>
+
+          </form>
+          
+ 
+          
+        </div>
+    
+  </div>
+      
+</div>

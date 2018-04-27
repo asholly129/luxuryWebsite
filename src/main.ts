@@ -3,7 +3,10 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
+import 'rxjs/add/operator/map'; 
+import 'rxjs/add/operator/toPromise';
 
+///<reference path="../node_modules/typescript/lib/lib.es6.d.ts"/> 
 if (environment.production) {
   enableProdMode();
 }

@@ -1,0 +1,79 @@
+<div class="container-fluid">
+
+  <mat-horizontal-stepper #stepper="matHorizontalStepper">
+    <mat-step [stepControl]="firstFormGroup">
+      <form #form1 = "ngForm" >
+        <div>
+        <!-- <ng-template matStepLabel>เลือกวันเวลาที่ต้องการ</ng-template>
+          <p-calendar [inline]="true" [(ngModel)]="date5" tabindex="0" appendTo="body" [disabledDates]="invalidDates" 
+          readonlyInput="true" [ngModelOptions]="{standalone: true}">
+        </p-calendar> <br> -->
+        <mat-form-field>
+            <input type="hidden">
+            <mat-select placeholder="เลือกวัน" name = "C_Date"  [(ngModel)]="dataCourse"  required>
+                <mat-option  *ngFor="let d of zeroDates;let i = index"  value="{{zeroDates[i]}}"  >
+                  {{ d | date }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <pre>{{i | json}}</pre>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-select placeholder="เลือกเวลา" name = "C_Time"  [(ngModel)]="courseTime"  required>
+                    <mat-option  *ngFor="let d of zeroTime;let i = index"  value="{{d.T1}} - {{d.T2}}"  >
+                      {{ d.T1 | date:'shortTime' }} - {{ d.T1 | date:'shortTime' }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperNext (click)="getData1(form1)">ถัดไป</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form #form2 = "ngForm" (ngSubmit)="getData2(form2)">
+        <div>
+        <ng-template matStepLabel>ตรวจสอบข้อมูล</ng-template>
+        <mat-form-field>
+          <input type="hidden">
+          <input matInput  placeholder="Name" name="name" [(ngModel)]="user.name" [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+      
+        <mat-form-field>
+            <input type="hidden">
+          <input matInput placeholder="LastName"  [(ngModel)]="user.lastName" [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+  
+        <mat-form-field>
+            <input type="hidden" >
+          <input matInput placeholder="Email"  [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="hidden">
+          <input matInput placeholder="Telephone" [(ngModel)]="user.tel"  [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="hidden" >
+          <input matInput placeholder="Address" [(ngModel)]="user.address" [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>ย้อนกลับ</button>
+          <button mat-button matStepperNext type="submit" >ถัดไป</button>
+        </div>
+      </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>ยืนยันการจอง</ng-template>
+      <div>
+        <button mat-button matStepperPrevious>ย้อนกลับ</button>
+        <button mat-button  (click)="confirm()">ยืนยันการจอง</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  
+  <p-growl [value]="msgs"></p-growl>
+  <p-confirmDialog appendTo="body"></p-confirmDialog>
+</div>

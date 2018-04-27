@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+
+<div class="ui container">
+  <div class="ui grid">
+    <div class="four wide column">
+        <app-nav-member></app-nav-member>
+    </div>
+  
+    <div class="twelve wide stretched column">
+      <div class="ui segment">
+          <h1>คอร์สที่ฉันสนใจ</h1>
+          <table class="ui selectable celled table">
+              <thead>
+                <tr>
+                <td><b>คอร์สเสริมความงาม</b></td>
+                <td><b>สถาบันเสริมความงาม</b></td>
+                <td><b>ราคา</b></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let tmp of temp;let i = index">
+                  <td>{{temp[i].C_Name}}</td>
+                  <td>{{temp[i].C_Institute}}</td>
+                  <td>{{temp[i].C_Price}}</td>
+                  <td><button class="ui black icon button" (click)="courseData(i)"><i class="eye icon"></i></button> </td>
+                  
+                </tr>
+              </tbody>
+              
+            </table>
+
+
+          <!-- <table>
+            <tr *ngFor="let i = index" [attr.data-index]="i">
+              <td>{{temp[i].C_Name}}</td>
+            </tr>
+          </table> -->
+
+
+      </div>
+      
+    </div>
+  </div>
+  </div>
+  

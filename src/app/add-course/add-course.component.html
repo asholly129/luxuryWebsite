@@ -1,0 +1,171 @@
+<div class="ui container">
+  <div class="ui grid">
+    <div class="three wide column">
+      <app-nav-admin></app-nav-admin>
+    </div>
+
+
+    <div class="thirteen wide stretched column">
+
+
+      <h1>{{title}}</h1>
+      <form (ngSubmit)="addCourse(courseForm)" #courseForm="ngForm">
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="ชื่อคอร์ส" name="C_Name" [(ngModel)]="course.C_Name">
+            </mat-form-field>
+          </div>
+
+
+
+          <div class="col">
+            <mat-form-field>
+              <mat-select placeholder="ประเภทคอร์ส" name="C_Category" [(ngModel)]="course.C_Category">
+                <mat-option [value]="1">Surgery Program</mat-option>
+                <mat-option [value]="2">Treatment Program</mat-option>
+                <mat-option [value]="3">Laser Program</mat-option>
+                <mat-option [value]="4">Injection Program</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+
+        <div class="row">
+
+          <div class="col">
+            <mat-form-field>
+              <input matInput placeholder="ราคา" type="number" class="example-right-align" name="C_Price" [(ngModel)]="course.C_Price">
+              <span matPrefix>$&nbsp;</span>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select placeholder="หน่วยเงิน" name="C_PriceUnit" [(ngModel)]="course.C_PriceUnit">
+                <mat-option [value]="1">บาท</mat-option>
+                <mat-option [value]="2">วอน</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+
+
+          <div class="col">
+            <mat-form-field>
+              <input matInput placeholder="ส่วนลดพิเศษ" type="number" class="example-right-align" name="C_Discount" [(ngModel)]="course.C_Discount">
+              <span matPrefix>$&nbsp;</span>
+              <span matSuffix>%</span>
+            </mat-form-field>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col">
+            <mat-form-field>
+              <textarea matInput placeholder="รายละเอียดคอร์ส" name="C_Description" [(ngModel)]="course.C_Description"></textarea>
+            </mat-form-field>
+          </div>
+
+
+          <div class="col">
+            <mat-form-field>
+              <mat-select placeholder="สถาบันเสริมความงาม" name="C_Institute" [(ngModel)]="course.C_Institute">
+                <mat-option *ngFor="let institute of institute | async" [value]="institute.I_Name">{{institute.I_Name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col">
+
+            <mat-form-field>
+              <mat-select placeholder="ประเภทร่างกาย" name="C_Body" [(ngModel)]="course.C_Body">
+                <mat-option [value]="1">ใบหน้า</mat-option>
+                <mat-option [value]="2">ตา</mat-option>
+                <mat-option [value]="3">จมูก</mat-option>
+                <mat-option [value]="4">ปาก</mat-option>
+                <mat-option [value]="5">คาง</mat-option>
+                <mat-option [value]="6">ขา</mat-option>
+                <mat-option [value]="7">อื่นๆ</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
+
+          <div class="col">
+            <form (ngSubmit)="upload()">
+              <div *ngIf="currentFileUpload" class="progress" style="width:400px">
+                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                  aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+                  {{progress.percentage}}%</div>
+              </div>
+
+              <!-- <img src="{{currentFileUpload.url}}" width="200px"> -->
+
+              <label class="btn btn-default">
+                <input type="file" [(ngModel)]="course.name" [ngModelOptions]="{standalone: true}" (change)="selectFile($event)">
+                <!-- {{course.name}} -->
+              </label>
+
+              <button class="ui green button" type="submit" [disabled]="!selectedFiles">upload</button>
+
+            </form>
+
+          </div>
+        </div>
+
+
+
+
+        <div class="row">
+          <div class="col">
+            <p-calendar [(ngModel)]="course.C_Date.date"  [ngModelOptions]="{standalone: true}" selectionMode="multiple" readonlyInput="true" [showIcon]="true" dateFormat="dd/mm/yy"
+            (onSelect)="getDate(course.C_Date)" ></p-calendar>
+            <pre>{{course.C_Date.date | json}}</pre>
+          </div>
+
+          <div class="col">
+            <div *ngIf="course.C_Date.date">
+              <div *ngFor="let x of course.C_Date.time; let i = index">
+                {{i}}
+                {{x.T1 | date:'shortTime'}} - {{x.T2 | date:'shortTime'}}
+                <!-- {{i}} -->
+                <!-- {{x |date:'shortTime'}} - {{time2[i] |date:'shortTime'}} -->
+                <br>
+                <div>
+                  <p-calendar [(ngModel)]="x.T1" name="{{x.T1}}"   [timeOnly]="true" readonlyInput="true"
+                  timeFormat="HH:mm:ss" ></p-calendar>
+                -
+                <p-calendar [(ngModel)]="x.T2" name="{{x.T2}}" [timeOnly]="true" readonlyInput="true"
+                  timeFormat="HH:mm:ss" ></p-calendar>
+                </div>
+                <!-- <button class="ui green button" (click)="addData()">add</button> -->
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+
+        <div>
+          <button class="ui green button" type="submit">Submit</button>
+        </div>
+      </form>
+      <a routerLink="/ad-manage-courses">กลับ</a>
+
+
+    </div>
+
+  </div>
+
+</div>

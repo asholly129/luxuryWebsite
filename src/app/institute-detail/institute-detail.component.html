@@ -1,0 +1,90 @@
+<script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAQqBo9D-f_Qq5YCoKbknqo6EMvTUSSfso"></script>
+<app-navbar></app-navbar>
+
+<div class="ui container">
+<form #courseForm="ngForm">
+    <div class="ui segment">
+        <!-- <input type="text" placeholder="ชื่อคอร์ส" name="C_Name" [(ngModel)]="course.C_Name"> -->
+      <h2 class="ui center floated header">{{institute.I_Name}}</h2>
+      <div>
+        <img  class="ui medium rounded image centered" src="{{institute.url}}" width="200px" >
+      </div>
+      <p></p>
+    
+    
+    
+
+
+      <h4 class="ui horizontal divider header">
+        <i class="bar chart icon"></i>
+        ข้อมูลเบื้องต้น
+      </h4>
+      <table class="ui definition table">
+        <tbody>
+          <tr>
+            <td class="two wide column">ประเทศ</td>
+            <td *ngIf="institute.I_Country == '1'">ไทย</td>
+            <td *ngIf="institute.I_Country == '2'">เกาหลี</td>
+          </tr>
+          <tr>
+            <td>จังหวัด</td>
+            <td>{{institute.I_Province}}</td>
+          </tr>
+          <tr>
+            <td>เวลา เปิด-ปิด</td>
+            <td>{{institute.I_Open.toFixed(2)}} น. - {{institute.I_Close.toFixed(2)}} น.</td>
+          </tr>
+          <tr>
+            <td>แผนที่</td>
+            <td>
+              <p-gmap id="gmap" [(options)]="options" [overlays]="overlays" [style]="{'width':'77%','height':'320px'}" ></p-gmap>
+            </td>
+          </tr>
+         
+        </tbody>
+      </table>
+
+      <h4 class="ui horizontal divider header">
+          <i class="tag icon"></i>
+          คอร์สเสริมความงาม
+        </h4>
+      
+      <div class="ui middle aligned animated list" *ngFor ="let data of courseList | async; let i = index">
+          <div class="item" *ngIf = "data.C_Institute == institute.I_Name" >
+              <i class="building icon"></i>
+            <div class="content">
+                <!-- <img class="ui avatar image" src="/images/avatar/small/helen.jpg"> -->
+                
+              <div class="header" >
+                <a (click)="clickCourseDetail(i)">{{data.C_Name}}</a>
+              </div>
+            
+            </div>
+          </div>
+   
+        </div>
+
+  
+    </div>
+    </form>
+    
+
+  </div>
+
+
+    <!-- <div class="ui relaxed items">
+        <div class="item" *ngFor ="let data of courseList | async">
+
+          <div class="ui tiny image">
+            <img src="/images/wireframe/image.png">
+          </div>
+          <div class="middle aligned content">
+            <a class="header" *ngIf = "data.C_Institute == institute.I_Name">{{data.C_Name}}</a>
+          </div>
+
+        </div>
+      </div> -->
+
+
+
+      

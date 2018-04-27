@@ -1,0 +1,79 @@
+<div class="ui container">
+  <div class="ui grid">
+    <div class="three wide column">
+      <app-nav-admin></app-nav-admin>
+    </div>
+
+
+    <div class="thirteen wide stretched column">
+
+
+      <h1>จัดการข้อมูลคอร์สเสริมความงาม</h1>
+      <div class="two wide column">
+        <button class="ui green icon button right floated" [routerLink]="'/add-course'" suiPopup popupHeader="เพิ่มข้อมูลคอร์ส" popupText="คลิกเพื่อเพิ่มข้อมูลคอร์ส"
+          weight="20%">
+          <i class="add icon"></i>
+        </button>
+      </div>
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th style="width:13%" class="ui center aligned">ชื่อ</th>
+            <th style="width:13%" class="ui center aligned">ประเภท</th>
+            <th style="width:13%" class="ui center aligned">รูป</th>
+            <th style="width:13%" class="ui center aligned">ราคา</th>
+            <th style="width:13%" class="ui center aligned">สถาบันเสริมความงาม</th>
+            <th style="width:7%" class="ui center aligned">ส่วนลด</th>
+            <th style="width:16%" class="ui center aligned">วันที่</th>
+            <th style="width:13%" class="ui center aligned">แก้ไข/ลบ</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr scope="row" *ngFor="let data of courseList| async ;let i = index" [attr.data-index]="i">
+            <td>{{data.C_Name}}</td>
+            <!-- <td>
+          <script type="text/javascript">
+          var variables= require('data.C_Category');
+          // `/editCourse/${this.myKeyTemp[data].key}`
+          if(variables == '1') {
+            document.write("Surgery Program");
+          }
+          </script>
+        
+        </td> -->
+            <td>{{data.C_Category}}</td>
+            <td>
+              <img src="{{data.url}}" alt="{{data.name}}" width="100px">
+            </td>
+            <td>{{data.C_Price}}</td>
+            <td>{{data.C_Institute}}</td>
+            <td>{{data.C_Discount}}</td>
+            <td>
+              <li *ngFor="let a of data.C_Date.date;let j = index" [attr.data-index]="j">{{a | date}}</li>
+            </td>
+
+
+            <!-- <td>{{i.key}}</td> -->
+            <td class="ui center aligned single line">
+
+              <button type="button" class="ui green icon button" (click)="editCourse(i)">
+                <i class="edit outline icon"></i>
+              </button>
+              <button type="button" class="ui red icon button" (click)="confirm(i)">
+                <i class="trash alternate outline icon"></i>
+              </button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p-growl [value]="msgs"></p-growl>
+      <p-confirmDialog appendTo="body"></p-confirmDialog>
+
+    </div>
+
+  </div>
+
+</div>

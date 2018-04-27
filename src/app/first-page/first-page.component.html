@@ -1,0 +1,66 @@
+<app-navbar>
+</app-navbar>
+
+
+<div class="ui container">
+
+
+    <div class="ui segment">
+        <h2 style="text-align: center">ค้นหาคอร์สที่ตรงใจคุณ</h2>
+        <div style="text-align: center">
+
+                <a [routerLink]="'/home/face'"><img src="https://firebasestorage.googleapis.com/v0/b/luxurywebsite-ced35.appspot.com/o/image%2F%E0%B9%83%E0%B8%9A%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2.png?alt=media&token=3e1de251-0603-4e90-99a6-ea399adcf1c4"
+                    width="100px"></a>
+                <a [routerLink]="'/home/eyes'"><img src="https://firebasestorage.googleapis.com/v0/b/luxurywebsite-ced35.appspot.com/o/image%2F%E0%B8%95%E0%B8%B2.png?alt=media&token=e42de257-ea9e-4ce7-aa2a-cbef0d4fa067"
+                    width="100px"></a>
+                <a [routerLink]="'/home/nose'"><img src="https://firebasestorage.googleapis.com/v0/b/luxurywebsite-ced35.appspot.com/o/image%2F%E0%B8%88%E0%B8%A1%E0%B8%B9%E0%B8%81.png?alt=media&token=2f9ff549-4449-4658-9465-b6b54ccc2b84"
+                    width="100px"></a>
+                <a [routerLink]="'/home/lip'"><img src="https://firebasestorage.googleapis.com/v0/b/luxurywebsite-ced35.appspot.com/o/image%2F%E0%B8%9B%E0%B8%B2%E0%B8%81.png?alt=media&token=7bae3967-2ce4-4c2c-bec5-f4e5e2978c03"
+                    width="100px"></a>
+                <a [routerLink]="'/home/chin'"><img src="https://firebasestorage.googleapis.com/v0/b/luxurywebsite-ced35.appspot.com/o/image%2F%E0%B8%84%E0%B8%B2%E0%B8%87.png?alt=media&token=3ba2e735-fbde-4bd5-934f-f5791e58e1b9"
+                    width="100px"></a>
+                <a [routerLink]="'/home/legs'"><img src= "https://firebasestorage.googleapis.com/v0/b/luxurywebsite-ced35.appspot.com/o/image%2F%E0%B8%82%E0%B8%B2%E0%B9%85.png?alt=media&token=6833771b-aaad-4e96-95d7-809b3c5ec81b" 
+                 width="100px "></a>
+                 <a [routerLink]="'/home/etc'"><img src="https://firebasestorage.googleapis.com/v0/b/luxurywebsite-ced35.appspot.com/o/image%2Fetc.png?alt=media&token=9019a83f-31fd-4dd6-8784-6d7c90a24bfa"
+                    width="100px"></a>
+    </div>
+    
+</div>
+
+<div class="ui segment ">
+        <h2 style ="text-align: center ">คอร์สใหม่ล่าสุด</h2>
+    <!-- <div class="ui horizontal segments ">
+        <div class="ui segment hover " *ngFor="let data of lastCourse;let i=i ndex " style="width: 20% ">
+                <a href="/course-detail/{{lastKey[i]}} "><h5 style="text-align: center ">{{data.C_Name}}</h5></a><br>
+                <img class="ui medium rounded image " src="{{data.url}} " width="200px ">
+        </div>
+
+    </div> -->
+
+    <ngb-carousel>
+  <ng-template ngbSlide *ngFor="let data of lastCourse;let i=index" style="width:100%; height:400px">
+    <a href="/course-detail/{{lastKey[i]}}"><img src="{{data.url}}" width="100%"></a>
+    <div class="carousel-caption">
+      <h3>{{data.C_Name}}</h3>
+      <!-- <p>This carousel uses customized default values.</p> -->
+    </div>
+  </ng-template>
+</ngb-carousel>
+</div>
+
+<div class="ui segment ">
+    <h2 style ="text-align: center ">บทความที่น่าสนใจ</h2>
+<div class="ui horizontal segments ">
+    <div class="ui segment hover " *ngFor="let a of articleList| async;let i= index " style="width: 20% ">
+            <a href="/article/{{arKey[i]}}"><h5 style="text-align: center ">{{a.atcTitle}}</h5></a><br>
+            <div [innerHTML]="a.article"></div>
+            <!-- <img class="ui medium rounded image " src="{{data.url}} " width="200px "> -->
+    </div>
+
+</div>
+<a href="/article-list" style="align-items: right">ดูทั้งหมด</a>
+</div>
+ 
+
+
+</div>

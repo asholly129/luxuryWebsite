@@ -1,6 +1,9 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "module": "es6",
+    "removeComments": false,
+    "noImplicitAny": false,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -14,6 +17,21 @@
     "lib": [
       "es2017",
       "dom"
+    ],
+    "types" : [
+    "node",
+    "googlemaps"
     ]
-  }
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "files": [
+    "node_modules/typescript/lib/lib.es6.d.ts"
+  ],
+  "exclude": [
+      "node_modules",
+      "**/*.spec.ts"
+  ],
+
 }

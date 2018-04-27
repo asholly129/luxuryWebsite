@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+<div class="ui container">
+  <div class="ui very padded segment">
+
+    <h1>คอร์สเสริมความงาม</h1>
+      <div class="ui divided items">
+        <div class="item" *ngFor="let data of courseList| async;let fav of favData|async;let i = index;">
+          <div class="image">
+            <img src="{{data.url}}" alt="{{data.name}}" width="200px">
+          </div>
+          <div class="content">
+            <a class="header">{{data.C_Name}}</a>
+            <div class="meta">
+              <span class="cinema" *ngIf="data.C_Category == '1'">Surgery Program</span>
+              <span class="cinema" *ngIf="data.C_Category == '2'">Treatment Program</span>
+              <span class="cinema" *ngIf="data.C_Category == '3'">Laser Program</span>
+              <span class="cinema" *ngIf="data.C_Category == '4'">Injection Program</span>
+
+            </div>
+            <div class="meta">
+              <span class="price">{{data.C_Price}}฿</span>
+            </div>
+            <div class="meta">
+              <span class="discount">{{data.C_Discount}}%</span>
+            </div>
+            <div class="description">
+              <span class="discount">{{data.C_Description}}</span>
+            </div>
+            <!-- <div class="ui star rating" data-rating="{{data.C_Rating}}"></div> -->
+            <div>
+
+              <button type="submit" class="ui primary button" (click)="bookCourse(i)" *ngIf="auth.authenticated">จองเลย</button>
+              <button type="submit" class="ui primary button" (click)="bookCourse(i)" *ngIf="!auth.authenticated">ดูรายละเอียดคอร์ส</button>
+              <button  class="ui danger button"  (click)="myFavCourse(i)"  *ngIf="auth.authenticated && courseLiked[i] == true">Liked</button>
+                <button  class="ui danger button"  (click)="myFavCourse(i)"  *ngIf="auth.authenticated && courseLiked[i] == false" >Like</button>
+
+              <!-- <button class="ui button" (click)="myFavCourse(i)" *ngIf="auth.authenticated" [(ngModel)]="courseLiked[i]" [ngModelOptions]="{standalone: true}" ngDefaultControl>{{courseLiked[i]}}</button> -->
+
+
+            </div>
+
+            <!-- <div *ngFor="let fav of favData">
+            <button type="submit" class="ui danger button"  (click)="myFavCourse(i)" *ngIf="fav.c_id == myKeyTemp[i].key">eiei</button>
+          </div> -->
+
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+  </div>
+
+</div>

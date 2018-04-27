@@ -1,0 +1,13 @@
+
+
+    <!-- <mat-toolbar>รีวิวคอร์สเสริมความงาม</mat-toolbar> -->
+    ตอบกลับ <br>
+ 
+    <form class="ui reply form" (ngSubmit)="replyFunction()">
+     <div class="field">
+       <textarea name="C_Reply" placeholder="ตอบกลับ" [(ngModel)]="replyData"></textarea>
+     </div>
+
+     <button class="ui blue button" type="submit" ><i class="icon edit"></i>ยืนยัน</button>
+     
+   </form>

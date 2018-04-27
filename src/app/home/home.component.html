@@ -1,0 +1,127 @@
+<script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAQqBo9D-f_Qq5YCoKbknqo6EMvTUSSfso"></script>
+<app-navbar></app-navbar>
+
+
+<div class="ui container">
+    <p-tabView orientation="left">
+        <p-tabPanel header="ค้นหาคอร์สเสริมความงาม" [selected]="true">
+
+            <p-tabView>
+                <p-tabPanel header="ค้นหาทั่วไป">
+      
+                  <form (ngSubmit)="searchData()">
+                    <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" placeholder="ค้นหาคอร์สเสริมความงาม/สถาบันเสริมความงาม"
+                      [ngbTypeahead]="search" [ngModelOptions]="{standalone: true}" />
+                    
+                      <p-calendar [(ngModel)]="model2" [showIcon]="true"
+                       [ngModelOptions]="{standalone: true}" readonlyInput="true"
+                       selectionMode="range" dateFormat="dd/mm/yy"></p-calendar>
+                       <pre>{{model2 | json}}</pre>
+                    <br>
+                    <button class="ui black basic button" type="submit">ค้นหา</button>
+                  </form>
+                </p-tabPanel>
+                <p-tabPanel header="ค้นหาตามช่วงราคา">
+      
+                  <form (ngSubmit)="searchByPrice()">
+      
+                    <h5>ช่วงราคา: {{rangeValues[0] + ' - ' + rangeValues[1]}}</h5>
+                    <p-slider [(ngModel)]="rangeValues" [style]="{'width':'200px'}" appendTo="body" [max]="100000" [range]="true" [ngModelOptions]="{standalone: true}"></p-slider>
+                    <br><br>
+                    <button class="ui black basic button" type="submit">ค้นหา</button>
+                  </form>
+      
+                </p-tabPanel>
+                <p-tabPanel header="ค้นหาตามประเภท">
+                  <form (ngSubmit)="searchByType()">
+                    <p-dropdown [options]="courseType" [(ngModel)]="courseCat" appendTo="body"
+                    [style]="{'width': '100%'}" [ngModelOptions]="{standalone: true}"></p-dropdown>
+                    <p-dropdown [options]="bodyType" [style]="{'width': '100%'}" [(ngModel)]="body" appendTo="body" [ngModelOptions]="{standalone: true}"></p-dropdown>
+                    <br><br>
+                    <button class="ui black basic button" type="submit">ค้นหา</button>
+      
+                  </form>
+      
+                </p-tabPanel>
+      
+              </p-tabView>
+      
+
+        </p-tabPanel>
+         <p-tabPanel header="ค้นหาสถาบันเสริมความงาม">
+
+            <p-tabView (onChange)="onTabChange($event)">
+                <p-tabPanel header="ค้นหาทั่วไป" >
+      
+                  <form (ngSubmit)="searchInstitute()">
+                    <p-dropdown [options]="country" [(ngModel)]="getCountry" appendTo="body"
+                    [style]="{'width': '50%'}" [ngModelOptions]="{standalone: true}"></p-dropdown>
+                    <br>
+                    <button class="ui black basic button" type="submit">ค้นหา</button>
+                  </form>
+                </p-tabPanel>
+                <p-tabPanel header="ค้นหาสถาบันที่ใกล้เคียง" >
+
+                      <span>Longitude: {{currentLong}}</span>
+                      <span>Longitude: {{currentLong}}</span>
+                  <div #gmap style="width:100%;height:300px"></div>
+                  <button class="ui black basic button" (click)="createMarker()">ค้นหา</button>
+                  
+      
+                </p-tabPanel>
+              </p-tabView>
+      
+
+
+        </p-tabPanel>
+
+    </p-tabView>
+  <div class="container-fluid outer">
+
+    <div class="container-fluid middle">
+
+      <div class="container-fluid inner">
+        <!-- <h1>ค้นหา</h1> -->
+
+        
+
+
+        <div *ngIf="l > 0">
+          <div *ngFor="let c of showCourse; let i = index">
+            <hr>
+            <div>
+              <h4>{{showCourse[i].C_Name}} </h4>
+            </div>
+            <br>
+            <img src={{showCourse[i].url}} width="400px">
+            <br>
+              <h3>{{showCourse[i].C_Price}}</h3> 
+              <h3 *ngIf="showCourse[i].C_PriceUnit=='1'">บาท</h3>
+              <h3 *ngIf="showCourse[i].C_PriceUnit=='2'">วอน</h3>
+            
+            <button class="ui blue basic button" (click)="goToCourse(i)">รายละเอียด</button>
+            <hr>
+          </div>
+
+        </div>
+
+        <div *ngIf="l == 0">
+          <hr>
+          <h4>ขออภัย ไม่พบผลลัพธ์ที่คุณต้องการ</h4>
+          <hr>
+        </div>
+
+
+
+        <hr>
+
+      </div>
+
+
+
+
+    </div>
+
+  </div>
+
+</div>

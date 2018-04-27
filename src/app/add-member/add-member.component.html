@@ -1,0 +1,90 @@
+
+
+<div class="ui grid">
+  <div class="four wide column">
+
+    <div class="ui secondary vertical menu">
+
+      <a class="item" [routerLink]="'/ad-manage-member'" routerLinkActive="active">
+        จัดการข้อมูลสมาชิก
+      </a>
+      <a class="item" [routerLink]="'/ad-manage-courses'" routerLinkActive="active">
+        จัดการข้อมูลคอร์ส
+      </a>
+      <a class="item" [routerLink]="'/ad-manage-institute'" routerLinkActive="active">
+        จัดการข้อมูลสถาบันเสริมความงาม
+      </a>
+      <a class="item" [routerLink]="'/ad-manage-confirm'" routerLinkActive="active">
+        ยืนยันการจองคอร์ส
+      </a>
+      <a class="item" [routerLink]="'/ad-report'" routerLinkActive="active">
+        รายงานค่าใช้จ่าย
+      </a>
+    </div>
+
+  </div>
+
+  <div class="twelve wide column">
+
+
+   <button class="ui green icon button"
+      [routerLink]="'/add-member'" suiPopup popupHeader="เพิ่มข้อมูลคอร์ส" popupText="คลิกเพื่อเพิ่มข้อมูลคอร์ส" weight="20%">
+    <i class="add icon"></i></button>
+
+    <h1>{{title}}</h1>
+    <form (ngSubmit)="addMember(memberForm)" #memberForm="ngForm">
+
+    <!-- <label for="name"> ชื่อคอร์ส</label>
+    <input type="text" name="C_Name" [(ngModel)]="course.C_Name"> -->
+
+    <div class="ui input">
+      <input type="text" placeholder="ชื่อผู้ใช้" name="Username" [(ngModel)]="member.Username">
+    </div> <br>
+    <div class="ui input">
+      <input type="text" placeholder="รหัสผ่าน" name="Password" [(ngModel)]="member.Password">
+    </div> <br>
+    <div class="ui input">
+      <input type="text" placeholder="ชื่อ" name="M_Name" [(ngModel)]="member.M_Name">
+    </div> <br>
+    <div class="ui input">
+      <input type="text" placeholder="นามสกุล" name="M_Lastname" [(ngModel)]="member.M_Lastname">
+    </div> <br>
+    <div class="ui input">
+      <input type="text" placeholder="อีเมล์" name="Email" [(ngModel)]="member.Email">
+    </div> <br>
+
+
+
+
+    <sui-select placeholder="เพศ" name="Gender" [(ngModel)]="member.Gender">
+      <sui-select-option value="ชาย"></sui-select-option>
+      <sui-select-option value="หญิง"></sui-select-option>
+  </sui-select>
+
+    <!-- <select class="ui dropdown" name="Gender" [(ngModel)]="member.Gender">
+      <option value="0">ชาย</option>
+      <option value="1">หญิง</option>
+    </select> -->
+
+
+    <div class="ui input">
+      <input type="text" placeholder="เบอร์โทรศัพท์" name="Tel" [(ngModel)]="member.Tel">
+    </div> <br>
+
+
+
+<!--
+    <label for="C_Price" > ราคา</label>
+    <textarea name="description" [(ngModel)]="course.C_Price"></textarea><br>
+
+    <label for="description" > ส่วนลดพิเศษ</label>
+    <textarea name="C_Discount" [(ngModel)]="course.C_Discount"></textarea><br> -->
+
+    <button type="submit">Submit</button>
+    </form>
+    <a routerLink="/ad-manage-member">Back To Member Management</a>
+
+
+
+  </div>
+</div>

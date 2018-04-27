@@ -1,0 +1,20 @@
+<div class="ui container">
+    <div class="ui grid">
+          <div class="three wide column">
+              <app-nav-admin></app-nav-admin>
+          </div> 
+      
+  
+      <div class="thirteen wide stretched column">
+        
+        <h1>รายงาน</h1>
+        <div><button class="ui black icon button  float-right" width="20%" (click)="download()">export</button></div>
+        <div id="content" #content>
+        <p-chart type="bar" [data]="data"></p-chart>
+      </div>
+          </div>
+      
+    </div>
+        
+  </div>
+  

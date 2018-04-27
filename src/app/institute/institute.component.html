@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+
+<div class="ui container">
+<div class="ui very padded segment">
+
+    <h1>สถาบันเสริมความงาม</h1>
+
+    <div class="ui divided items">
+      <div class="item" *ngFor="let data of instituteList| async; let i = index">
+        <div class="image">
+            <img src="{{data.url}}" alt="{{data.name}}" width="200px">
+        </div>
+        <div class="content">
+          <a class="header">{{data.I_Name}}</a>
+          <div class="meta">
+            <span class="cinema" *ngIf = "data.I_Country == 1">ไทย</span>
+            <span class="cinema" *ngIf = "data.I_Country == 2">เกาหลี</span>
+          </div>
+          <div class="meta">
+            <span class="price">{{data.I_Province}}</span>
+          </div>
+          <div class="description">
+            <span class="price">{{data.I_Description}}</span>
+          </div>
+          <div >
+              <!-- <button type="button" class="ui button" (click)="instituteDetail(i)" *ngIf="auth.authenticated">จองเลย</button> -->
+              <button class="ui primary button" (click)="instituteDetail(i)">ดูรายละเอียดสถาบันเสริมความงาม</button>
+            </div>
+        </div>
+      </div>
+
+    </div>
+    
+</div>
+</div>

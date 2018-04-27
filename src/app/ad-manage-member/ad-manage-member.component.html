@@ -1,0 +1,53 @@
+<div class="ui container">
+    <div class="ui grid">
+          <div class="three wide column">
+              <app-nav-admin></app-nav-admin>
+          </div> 
+      
+  
+      <div class="thirteen wide stretched column">
+
+          <h1>จัดการข้อมูลสมาชิก</h1>
+          <div class="two wide column">  <button class="ui green icon button right floated"
+            [routerLink]="'/add-member'" suiPopup popupHeader="เพิ่มข้อมูลสมาชิก" popupText="คลิกเพื่อเพิ่มข้อมูลสมาชิก" weight="20%">
+          <i class="add icon"></i></button></div>
+        
+          
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                      <th style="width:13%" class="ui center aligned">อีเมล์</th>
+                      <th style="width:13%" class="ui center aligned">ชื่อ</th>
+                      <th style="width:13%" class="ui center aligned">นามสกุล</th>
+                      <th style="width:13%" class="ui center aligned">เบอร์โทรศัพท์</th>
+                      <th style="width:13%" class="ui center aligned">ที่อยู่</th>
+                      <th style="width:13%" class="ui center aligned">Action</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      
+                      <tr *ngFor="let data of memberList| async ;let i = index" [attr.data-index]="i">
+                        <td>{{data.email}}</td>
+                        <!-- <td>{{data.password}}</td> -->
+                        <td>{{data.name}}</td>
+                        <td>{{data.lastName}}</td>
+                        <td>{{data.tel}}</td>
+                        <td>{{data.address}}</td>
+                      
+          <td class="ui center aligned single line">
+   
+            <button type="button" class="ui green icon button" (click)="editMember(i)"><i class="edit outline icon"></i></button>
+            <button type="button" class="ui red icon button" (click)="delMember(i)"><i class="trash alternate outline icon"></i></button>
+    
+          </td>
+          </tr>
+          </tbody>
+          </table>
+          
+          
+          </div>
+      
+    </div>
+        
+  </div>
+  

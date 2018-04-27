@@ -1,0 +1,91 @@
+
+
+<app-navbar></app-navbar>
+<div class="ui container">
+
+<form #courseForm="ngForm">
+<div class="ui segment">
+    <!-- <input type="text" placeholder="ชื่อคอร์ส" name="C_Name" [(ngModel)]="course.C_Name"> -->
+  <h2 class="ui center floated header"  >{{course.C_Name}}</h2>
+  <div class="ui clearing divider"></div>
+
+  <img class="ui medium rounded image centered" src="{{course.url}}" width="300px">
+
+
+
+  <!-- <p>Doggie treats are good for all times of the year. Proven to be eaten by 99.9% of all dogs worldwide.</p> -->
+  <h4 class="ui horizontal divider header">
+    <i class="bar chart icon"></i>
+    ข้อมูลเบื้องต้น
+  </h4>
+  <table class="ui definition table">
+    <tbody>
+      <tr>
+        <td class="two wide column">รายละเอียด</td>
+        <td>{{course.C_Description}}</td>
+      </tr>
+      <tr>
+        <td class="two wide column">ประเภท</td>
+        <td *ngIf="course.C_Category == '1'">Surgery Program</td>
+        <td *ngIf="course.C_Category == '2'">Treatment Program</td>
+        <td *ngIf="course.C_Category == '3'">Laser Program</td>
+        <td *ngIf="course.C_Category == '4'">Injection Program</td>
+      </tr>
+      <tr>
+        <td>สถาบันเสริมความงาม</td>
+        <td>{{course.C_Institute}}</td>
+      </tr>
+      <tr>
+        <td>ราคา</td>
+        <td>{{course.C_Price}}</td>
+      </tr>
+      <tr>
+        <td>ส่วนลด</td>
+        <td>{{course.C_Discount}}%</td>
+      </tr>
+      <tr>
+        <td>คะแนน</td>
+        <td><p-rating name="C_Rating" [(ngModel)]="sum" readonly="true" [cancel]="false"></p-rating> {{sum.toFixed(2)}}คะแนน จาก {{n}} รีวิว</td>
+      </tr>
+      <tr *ngIf="auth.authenticated">
+        <td>จอง</td>
+        <td><button class="ui blue button" (click)="openDialog()">จอง</button>
+        <button class="ui blue button" (click)="reviewAndRating()">รีวิว/ให้คะแนน</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>
+</form>
+
+<div class="ui segment">
+
+  <h2>รีวิวจากผู้ใช้</h2>
+
+
+  <!-- <p *ngFor="let review of review">{{review.C_Review}}</p> -->
+
+  <hr>
+
+  <div class="ui segment" *ngFor="let review of thisReview; let i = index" >
+      <p>{{review.C_Review}}</p>
+      <td><p-rating name="C_Rating" [(ngModel)]="review.C_Rating" readonly="true" [cancel]="false"></p-rating>
+      <p><i>แสดงความคิดเห็นโดย : {{userReview[i].name}}  {{userReview[i].lastName}}</i></p>
+      <button class="ui blue basic button" (click)="replyComment(i)" *ngIf="auth.authenticated">ตอบกลับ</button>
+      <div *ngFor="let reply of review.reply;let j = index">
+        <hr>
+        {{reply.message}}
+        <!-- {{userReply[i][j]}} -->
+      </div>
+  </div>
+
+
+
+
+</div>
+
+
+
+</div>
+

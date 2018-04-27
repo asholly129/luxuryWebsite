@@ -1,0 +1,62 @@
+
+<app-navbar></app-navbar>
+
+<div class="ui container">
+<div class="ui grid">
+  <div class="four wide column">
+      <app-nav-member></app-nav-member>
+  </div>
+
+  <div class="twelve wide stretched column">
+    <div class="ui segment">
+        <h1>ประวัติการจองคอร์ส</h1>
+
+        <div id="content" #content style="display:none" class="a4">
+            <!-- <script async src="//jsfiddle.net/kumarrishikesh12/rwdL0rxh/embed/"></script> -->
+          <!-- <img src="http://www.luxuryclinicthailand.com/wp-content/uploads/2018/02/Logo-Luxury-04-111x111.png" class="centered"><br> -->
+          <br><br><br>
+          <h1 style="padding-top:50px;">B Star Beauty Company</h1><br>
+          <h2>Reservation Form</h2>
+          <br><br>
+          <hr>
+          <p><b>Name:</b> {{userData.name}} <b>Lastname:</b> {{userData.lastName}}</p>
+          <p><b>Course: </b>{{c1[courseK].C_Name}} <b>Price: </b>{{c1[courseK].C_Price}} </p>
+          <p><b>at</b> {{c1[courseK].C_Institute}} <b>On</b>{{date[index] | date}}</p>
+          <p>Please bring this reservation form to the institute company.</p>
+          <hr>
+          <br><br>
+          <p>Best regard,</p> <br>
+        
+        </div>
+        <!-- {{c1.C_Name}} -->
+        <table class="ui selectable celled table">
+          <thead>
+            <tr>
+              <td><b>คอร์สเสริมความงาม</b></td>
+              <td><b>สถาบันเสริมความงาม</b></td>
+              <td><b>ราคา</b></td>
+              <td><b>วันที่จอง</b></td>
+              <td><b>สถานะ</b></td>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let x of courseList;let i = index">
+              <td>{{c1[x].C_Name}}</td>
+              <td>{{c1[x].C_Institute}}</td>
+              <td>{{c1[x].C_Price}}</td>
+              <td>{{date[i] | date}}</td>
+              <td>{{status[i]}}</td>
+              <td><button type="button" class="ui black icon button" *ngIf="status[i] == 'ยืนยันการจองแล้ว'" (click)="pdfDownload(x,i)">
+                <i class="file pdf outline icon"></i>
+              </button></td>
+              <!-- <td *ngIf="status[i]=='1'">จองแล้ว<td>
+              <td *ngIf="status[i]=='0'">รอการยืนยัน<td> -->
+            </tr>
+          </tbody>
+          
+        </table>
+    </div>
+    
+  </div>
+</div>
+</div>

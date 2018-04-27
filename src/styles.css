@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/* @import "../node_modules/font-awesome/css/font-awesome.min.css"; */
+/* @import "~angular-star-rating/assets/scss/star-rating"; */
+
+/* @import "~@progress/kendo-theme-default/scss/all";
+@import "../node_modules/@progress/kendo-angular-grid/dist/npm/css/main.css"; */
+
+/* @import "../node_modules/bootstrap/scss/bootstrap.scss"; */
